@@ -7,27 +7,31 @@ example: true
 
 In a new copy, replace sample project documentation and ticket history with your product's actual context before planning real work. The examples are marked `example: true`; remove that flag from newly authored real records. Do not inherit sample approvals or completed states. Keep `.agents/` and `.sdd/` unchanged.
 
-For an existing project copy only the reusable directories initially. Inspect collisions if it already has SDD files. Ask the agent to use `sdd-init` to add missing project knowledge without overwriting approved documentation, source, tests or ticket history. Review stale-document proposals. The same procedure applies to Python, TypeScript and documentation-only repositories; initialization inspects the actual project rather than imposing a stack.
+For an existing project copy only the reusable directories initially. Inspect collisions if it already has SDD files. Ask the agent to use `project-init` to add missing project knowledge without overwriting approved documentation, source, tests or ticket history. Review stale-document proposals. The same procedure applies to Python, TypeScript and documentation-only repositories; initialization inspects the actual project rather than imposing a stack.
 
 ## Initialize and rerun
 
 Supply purpose, known constraints and engineering practices. Baseline docs describe what exists; future behavior is proposed and uncertain conclusions are unverified. Initialization creates a ticket guide, not sprints/tickets. Repeating initialization fills missing docs and proposes stale-content updates; it does not reset history.
 
-## Plan bounded work
+## Specify once and plan each iteration
 
-Ask for one sprint goal. The planner reconciles actual implementation, prior sprint outcomes, incomplete tasks and unresolved findings before proposing work. Approve the concrete scope, then refine a selected stub with ticket-spec and ticket-plan. Specifications own requirement IDs and ticket estimates; tasks map acceptance to changesets and include independent review instructions.
+Supply a sprint outcome, priorities, exclusions and capacity. Reconcile actual implementation and open work before approving a bounded sprint. Refine each selected stub into one human-owned specification with behavior examples, scope and success criteria. Ask and answer the product questions needed before approval; after approval, requirements and acceptance criteria stay fixed. Lifecycle metadata and factual history remain writable. Changed product requirements need a separately authorized linked ticket.
 
-## Implement and hand off
+Before every implementation iteration, use ticket-plan with human engineering direction and constraints. Supply written instructions or ask the agent to interview you until priorities, compatibility and tradeoffs are settled. After review, add context about what matters, what does not and which findings you dispute. The planner checks actual evidence, classifies validity and scope, and proposes corrections or follow-up without changing the specification. A valid acceptance failure cannot be excluded merely because it is inconvenient.
 
-Implement ready tasks against the current approved plan. Record actual paths, base/commits or captured snapshot, checks, documentation updates and limitations. Do not create a test harness for a documentation-only change. Application work uses the project's appropriate tests/checks.
+The Markdown plan states exactly what this iteration will change, exclusions, task boundaries, checks and review expectations. plan_revision is the iteration number. Preserve earlier scope, human decisions, approval evidence and outcomes in Iteration History before replacing the current narrative. Keep task identities and completed work. Approve the actual next iteration; prior approval covers only its original scope unless explicit authorization already covers the new decisions.
 
-Start a fresh reviewer session, supply the ticket ID and actual boundary, and ask it to use ticket-review. Without an independent reviewer, leave acceptance pending. Do not reinterpret an implementer summary as a review. Work can be implemented without being accepted.
+## Implement and review with minimal interaction
 
-## Revise and reconcile
+Supply the ticket reference to ticket-implement. It executes the current approved iteration and records actual paths, base/commits or captured snapshot, checks, documentation updates and limitations. It does not choose which raw review suggestions to implement. Do not create a test harness for a documentation-only change; application work uses the project's appropriate checks.
 
-A material requirement change increments specification revision, preserves IDs, invalidates affected approval and marks downstream planning stale. Replan while retaining completed tasks and history. Use a new linked ticket for an independent enhancement rather than silently reopening done work.
+Use ticket-review in a fresh independent session with the same ticket reference; it reads the recorded review contract and boundary. Implementation and review should almost never ask routine questions: decisions belong in the specification and plan. Unforeseen conflicts, missing authority or an inaccessible boundary are escalation exceptions. Record the blocker and return affected work to planning rather than guessing. Without an independent reviewer leave acceptance pending.
 
-For findings, acknowledge and map each to scoped fixes or revised contracts. Append evidence after correction. A reviewer verifies the new boundary before resolving findings and accepting work. Keep every prior run and attempted resolution. Carry unfinished tickets between sprints with the same ID and explicit source/destination records.
+## Return review outcomes to planning
+
+The flow is spec once, then plan -> implement -> review -> plan -> implement -> review until independent review approves and completion gates pass. A changes_requested verdict makes the prior plan needs_reconciliation; no direct fix cycle is allowed. Human-led planning assesses every finding, records rationale and selects fixes, evidence-only rechecks or authorized follow-up work. Optional improvements may be deferred; unresolved valid blockers still block acceptance.
+
+Implementation follows the new approved iteration and proposes resolutions with evidence. The independent reviewer verifies fixes or disputed-finding evidence before resolving findings. Preserve all prior plans, runs, severities and attempted resolutions. Carry unfinished tickets between sprints with the same ID and explicit source/destination records.
 
 ## Git and permissions
 

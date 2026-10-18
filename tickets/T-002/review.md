@@ -2,8 +2,8 @@
 example: true
 ticket_id: "T-002"
 spec_revision: 1
-plan_revision: 1
-contract_revision: 1
+plan_revision: 2
+contract_revision: 2
 ---
 # Review contract: T-002
 
@@ -11,11 +11,13 @@ contract_revision: 1
 
 ## Metadata
 
-Contract revision 1 checks specification/plan revision 1; examples confer no actual approval.
+Contract revision 2 checks fixed specification revision 1 and iteration plan revision 2; examples confer no actual approval. Revision-1 review scope, boundaries and outcomes are retained in the plan Iteration History and R-001/R-002.
 
 ## Review Scope
 
 Independent review of all required tasks and full-ticket acceptance. A fresh session or independent human must inspect actual changes; the implementer cannot perform this acceptance.
+
+Iteration 2 verifies the planned F-001 correction in TASK-002 and revalidates unchanged TASK-001 for full acceptance. Check the planner's validity/scope assessment against AC-002; do not assume the assessment itself resolves the finding. Cross-agent discovery remains separate T-003 work.
 
 ## Specification Reference
 

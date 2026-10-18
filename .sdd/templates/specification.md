@@ -19,6 +19,8 @@ approval:
 
 Frontmatter is authoritative for ticket-level values. Types and states follow `.sdd/references/artifact-contracts.md` and `lifecycle.md`.
 
+Finalize requirements, scope and acceptance once with the human before planning. Keep that approved contract fixed across iterations; update only lifecycle metadata and factual history afterward. Changed product requirements need a separately authorized linked ticket.
+
 ## Summary
 
 {{intended outcome or user story}}
@@ -66,4 +68,4 @@ Frontmatter is authoritative for ticket-level values. Types and states follow `.
 
 ## Change History
 
-{{revision, changed IDs, actor/decision evidence, lifecycle transitions, downstream impact, and any blocker/resume state}}
+{{drafting history and final human approval; subsequent lifecycle transitions, iteration references and blocker/resume state without rewriting approved requirements}}

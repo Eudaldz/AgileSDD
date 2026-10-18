@@ -5,7 +5,7 @@ example: true
 
 ## Status and Evidence
 
-Current file-based architecture. Evidence: [.agents skills](../../.agents/skills/sdd-init/SKILL.md), [artifact contracts](../../.sdd/references/artifact-contracts.md), [defaults](../../.sdd/defaults.yaml), and [ticket examples](../../tickets/README.md). No executable service is present.
+Current file-based architecture. Evidence: [.agents skills](../../.agents/skills/project-init/SKILL.md), [artifact contracts](../../.sdd/references/artifact-contracts.md), [defaults](../../.sdd/defaults.yaml), and [ticket examples](../../tickets/README.md). No executable service is present.
 
 ## Responsibilities and Boundaries
 

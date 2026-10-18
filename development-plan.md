@@ -122,9 +122,9 @@ repository/
 │
 ├── .agents/
 │   ├── skills/
-│   │   ├── sdd-init/
+│   │   ├── project-init/
 │   │   │   └── SKILL.md
-│   │   ├── sdd-sprint/
+│   │   ├── project-sprint/
 │   │   │   └── SKILL.md
 │   │   ├── ticket-spec/
 │   │   │   └── SKILL.md
@@ -134,9 +134,7 @@ repository/
 │   │   │   └── SKILL.md
 │   │   ├── ticket-review/
 │   │   │   └── SKILL.md
-│   │   ├── ticket-reconcile/
-│   │   │   └── SKILL.md
-│   │   └── sdd-audit/
+│   │   └── project-audit/
 │   │       └── SKILL.md
 │   │
 │   └── roles/
@@ -258,7 +256,7 @@ The canonical interface is the skill name and its instructions. When an agent su
 
 Skills operate directly on repository files using the agent's existing capabilities. Slash-style invocations below are agent skill notation, not a shell CLI to implement.
 
-Developers use the repository template or manually copy `.agents/` and `.sdd/` into existing projects, then invoke `sdd-init` through their agent. Explain how to replace sample state without overwriting existing work. No bootstrap or installation command is required.
+Developers use the repository template or manually copy `.agents/` and `.sdd/` into existing projects, then invoke `project-init` through their agent. Explain how to replace sample state without overwriting existing work. No bootstrap or installation command is required.
 
 Do not build dedicated integrations for every agent in v1.
 
@@ -268,7 +266,7 @@ Do not build dedicated integrations for every agent in v1.
 
 ## Skill invocation
 
-`/sdd-init`
+`/project-init`
 
 ## Purpose
 
@@ -375,7 +373,7 @@ Verify:
 
 ## Idempotency
 
-Rerunning `/sdd-init` must not overwrite approved project documentation.
+Rerunning `/project-init` must not overwrite approved project documentation.
 
 It should identify missing documents and propose updates to stale documentation.
 
@@ -385,7 +383,7 @@ It should identify missing documents and propose updates to stale documentation.
 
 ## Skill invocation
 
-`/sdd-sprint`
+`/project-sprint`
 
 ## Purpose
 
@@ -541,15 +539,7 @@ blocked
 cancelled
 ```
 
-Revisions may move tickets backward when necessary.
-
-Examples:
-
-- Planned → Specified when product requirements change.
-- In Review → In Progress when findings need fixes.
-- Done → Specified when a previously completed ticket is explicitly reopened.
-
-Do not automatically reopen completed work because a new sprint introduces an enhancement. Prefer a new linked ticket for independently deliverable changes.
+Review iterations return tickets to planned after a new human-led iteration is approved. A changes-requested verdict leaves the ticket in_review and marks its plan needs_reconciliation until that decision. There is no direct review-to-fix transition. The specification stays fixed; changed product requirements need a separately authorized linked ticket. Do not automatically reopen completed work because a new sprint introduces an enhancement.
 
 ## Lifecycle rules
 
@@ -623,22 +613,9 @@ AC-003
 
 Technical tickets may define design or research outcomes instead of end-user behavior.
 
-## Revision handling
+## Stable specification
 
-When changing an existing specification:
-
-1. Read the previous specification.
-2. Compare it with the requested change.
-3. Preserve unchanged requirement IDs.
-4. Add new requirement IDs.
-5. Explicitly mark removed or superseded requirements.
-6. Identify the impact on the implementation plan.
-7. Identify already implemented behavior that may need revision.
-8. Preserve relevant human decisions.
-
-Do not silently rewrite the entire specification.
-
-When changes are material, mark downstream plans and reviews as needing reconciliation.
+The human owns requirements, scope and acceptance. The agent structures their input and asks concrete questions until material behavior is settled. Drafting may require multiple conversations, but the specification is finalized once per ticket. After approval, only lifecycle metadata and factual history change. Requirements and acceptance criteria stay fixed through every iteration. Changed product requirements need a separately authorized linked ticket, not a rewritten specification.
 
 ---
 
@@ -657,12 +634,14 @@ tickets/<ticket-id>/review.md
 
 ## Purpose
 
-Transform an approved specification into two optimized execution contracts:
+Before every implementation iteration, transform the fixed approved specification and human direction into two execution contracts:
 
 - Implementation instructions for the implementer agent.
 - Verification instructions for the reviewer agent.
 
-The plan must be a single Markdown document containing technical design, tasks, ordering, and acceptance criteria.
+The plan must be a single Markdown document describing exactly what will change in the current iteration. Include Human Direction, Iteration Scope, Finding Assessment and Iteration History alongside technical design, tasks, ordering and references to fixed acceptance criteria. plan_revision is the iteration number. Preserve previous scope, human decisions, approvals, task boundaries and outcomes before updating the current plan.
+
+Humans drive each iteration through written instructions or active questioning. After review, assess each finding against evidence, the fixed specification and human priorities: validity, in/out-of-scope rationale and proposed action. Do not blindly implement reviewer preferences or dismiss verified acceptance failures. Approve the concrete next iteration before implementation; preserve completed tasks and prior findings. Reissue an aligned review contract without weakening criteria.
 
 Do not create separate task files.
 
@@ -918,7 +897,7 @@ Do not load the entire repository indiscriminately.
 - Do not mark tickets done automatically.
 - Do not bypass validation failures.
 
-The implementer may record technical concerns and propose a revised plan.
+The implementer records unforeseen conflicts and returns affected work to human-led planning. Implementation and review use the recorded decisions without routine questions; only unforeseen conflicts, missing authority or inaccessible evidence warrant escalation. Post-review fixes require a new approved plan iteration.
 
 It must not silently alter acceptance criteria to fit the implemented code.
 
@@ -986,7 +965,7 @@ The initial review contract is produced during planning.
 
 The implementer should not modify it to weaken requirements.
 
-When specifications materially change, rerun planning and review-contract generation.
+After every changes-requested review, write a new human-led iteration plan and aligned review contract before further implementation. Keep the approved specification fixed.
 
 ## Reviewer behavior
 
@@ -1075,30 +1054,30 @@ Prefer an independent reviewer agent without relying on the implementer's previo
 
 ---
 
-# 12. Review reconciliation
+# 12. Review iterations through implementation
 
 ## Skill invocation
 
-`/ticket-reconcile <ticket-id>`
+`/ticket-plan <ticket-id>`, then `/ticket-implement <ticket-id>`, then independent `/ticket-review <ticket-id>`
 
 ## Purpose
 
-Reconcile review findings with implementation state.
+Write the specification once, then repeat human-led plan -> implement -> review until independent review approves and completion gates pass. Every changes-requested review returns to planning before fixes; there is no separate reconciliation skill. The human supplies context on priorities and disputes, or the planner asks concrete questions to establish it.
 
 ## Procedure
 
-1. Read all open findings.
-2. Match findings to tasks and files.
+1. Read all open findings and human iteration context.
+2. Assess validity and scope against actual evidence, the fixed specification and project rules; record rationale and proposed actions.
 3. Determine whether each finding requires:
    - A fix to an existing task.
    - A new implementation task.
    - A plan revision.
-   - A specification revision.
+   - A separately authorized linked ticket if product requirements must change.
    - A documentation update.
 4. Preserve the original finding history.
-5. Apply only justified status changes.
-6. Rerun validation when necessary.
-7. Identify tasks that require re-review.
+5. Preserve the prior plan and prepare a new approved Markdown iteration with exact changes and checks.
+6. Implement only the selected iteration work and record validation evidence.
+7. Independently re-review changed boundaries and disputed-finding evidence; preserve all prior verdicts.
 
 Review findings must never be deleted merely because the implementer claims a fix.
 
@@ -1264,7 +1243,7 @@ Invalid settings should generate clear errors, not silently change workflow beha
 
 ## Skill invocation
 
-`/sdd-audit`
+`/project-audit`
 
 ## Purpose
 
@@ -1662,7 +1641,7 @@ Acceptance criteria:
 
 Deliver:
 
-- `sdd-init` skill.
+- `project-init` skill.
 - Constitution template.
 - Project documentation templates.
 - Architecture templates.
@@ -1681,7 +1660,7 @@ Acceptance criteria:
 
 Deliver:
 
-- `sdd-sprint` skill.
+- `project-sprint` skill.
 - Sprint manifest format.
 - Ticket metadata contract.
 - Ticket creation.
@@ -1750,7 +1729,7 @@ Deliver:
 - Local diff inspection workflow.
 - Review verdicts.
 - Finding lifecycle.
-- `ticket-reconcile` skill.
+- Human-led post-review iteration planning in `ticket-plan`, followed by planned fixes in `ticket-implement` and independent re-review.
 - Re-review behavior.
 
 Acceptance criteria:
@@ -1765,7 +1744,7 @@ Acceptance criteria:
 
 Deliver:
 
-- `sdd-audit` skill.
+- `project-audit` skill.
 - Structural audit.
 - Documentation reconciliation workflow.
 - ADR compliance checks.
@@ -1812,9 +1791,9 @@ The framework is complete for v1 when all of the following are true:
 
 1. The same `.agents/` and `.sdd/` are stack-independent and require no runtime or package installation; adoption guidance covers new, existing, and documentation-only projects.
 
-2. `/sdd-init` creates project documentation but no tickets.
+2. `/project-init` creates project documentation but no tickets.
 
-3. `/sdd-sprint` inspects the repository, performs reconciliation, plans bounded work, and creates ticket stubs.
+3. `/project-sprint` inspects the repository, performs reconciliation, plans bounded work, and creates ticket stubs.
 
 4. `/ticket-spec` turns a ticket stub into a clear, testable specification.
 
@@ -1828,13 +1807,13 @@ The framework is complete for v1 when all of the following are true:
 
 9. `/ticket-review` reviews actual changes and records findings without depending on GitHub.
 
-10. `/ticket-reconcile` supports resolving findings while preserving their history.
+10. Review outcomes return to human-led `/ticket-plan` before further implementation; findings, prior iteration plans and independent acceptance authority are preserved.
 
-11. `/sdd-audit` detects structural inconsistencies and supports agent-assisted semantic drift inspection.
+11. `/project-audit` detects structural inconsistencies and supports agent-assisted semantic drift inspection.
 
 12. Every framework-generated artifact is readable and reviewable in Git.
 
-13. Ticket revisions preserve completed work and traceability.
+13. The specification is finalized once; iteration plans preserve completed work, human decisions, approvals and traceability.
 
 14. Ordinary project workflows never modify the framework directories.
 

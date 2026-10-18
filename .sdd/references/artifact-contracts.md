@@ -4,7 +4,7 @@
 
 Resolve every path from the repository root. First read the applicable repository instructions, `docs/constitution.md`, and `docs/workflow.md`, if present. Read only the active artifacts and relevant architecture, decisions, and source; expand context when evidence requires it. Skill links are relative to their file; code-formatted repository paths are root-relative.
 
-Ordinary workflows may write `docs/` and `tickets/`. Implementation and reconciliation may also write the source, configuration, and application-test paths explicitly named in the approved plan. Initialization may update the root README only when requested. Never edit `.agents/`, `.sdd/`, `.git/`, credentials, generated/vendor files, or paths outside the repository. Check normalized destinations and symlink/junction targets before writing; a path escaping the repository is not permitted. Framework maintenance is a separate, explicitly requested task, not a ticket-level exception.
+Ordinary workflows may write `docs/` and `tickets/`. Implementation, including review fixes, may also write the source, configuration, and application-test paths explicitly named in the approved plan. Initialization may update the root README only when requested. Never edit `.agents/`, `.sdd/`, `.git/`, credentials, generated/vendor files, or paths outside the repository. Check normalized destinations and symlink/junction targets before writing; a path escaping the repository is not permitted. Framework maintenance is a separate, explicitly requested task, not a ticket-level exception.
 
 Read existing content before editing, inspect working-tree changes, and preserve unrelated work. Stage edits in memory or a temporary file and replace only the intended content after checking it. On conflicting concurrent changes, stop the affected write and reload rather than overwrite. Do not delete artifacts to resolve errors. No bundled tool enforces these rules.
 
@@ -21,7 +21,7 @@ Allocate IDs by scanning existing documents and directories, including cancelled
 | Artifact | Required frontmatter | Authority |
 |---|---|---|
 | `specification.md` | `ticket_id`, `title`, `type`, `priority`, `story_points`, `status`, `revision`, `depends_on`, `external_refs`, `approval` | Ticket metadata and intended behavior |
-| `implementation.md` | `ticket_id`, `spec_revision`, `plan_revision`, `plan_status`, `planned_on`, `approval` | Technical approach and task state |
+| `implementation.md` | `ticket_id`, `spec_revision`, `plan_revision`, `plan_status`, `planned_on`, `approval` | Current iteration plan, task state and preserved iteration history |
 | `review.md` | `ticket_id`, `spec_revision`, `plan_revision`, `contract_revision` | Verification contract |
 | `review-findings.md` | `ticket_id` | Review runs and findings |
 | Sprint | `sprint_id`, `goal`, `status`, `start`, `end`, `capacity`, `tickets` | Current sprint membership |
@@ -35,6 +35,8 @@ Revisions are positive integers. `plan_status` is `draft`, `approved`, or `needs
 ## Required sections
 
 Use the headings in the corresponding template. A draft stub can leave unestablished sections marked `Not established`; do not advance it as if complete. `Metadata` sections point to frontmatter, never duplicate fields. Specifications contain stable requirements and observable acceptance criteria, each with a verification method. Plans reference exact canonical acceptance wording or link to it by revision; do not redefine it. Review contracts map every criterion to independently repeatable evidence.
+
+Finalize the specification once; after approval, only lifecycle metadata and factual history change. plan_revision identifies the current iteration, starting at 1 and incrementing for every post-review plan even when the specification is unchanged. Plans contain Human Direction, Iteration Scope, Finding Assessment and Iteration History. Record human instructions or questions/answers, exact proposed changes and exclusions, and each finding's validity, scope, rationale, proposed action and task mapping. First-iteration assessment may say no review exists yet. Before replacing a prior plan narrative, preserve its scope, decisions, approval evidence, task boundaries and outcomes in Iteration History; keep prior review runs tied to their original revisions. Do not duplicate editable task mappings in history.
 
 Each task mapping requires `id`, `title`, `status`, `depends_on`, `acceptance_criteria`, `supporting_work`, `files`, `expected_changes`, `verification`, `documentation_impact`, and `changeset`. Nonempty `supporting_work` explains tasks without direct acceptance coverage. Documentation impact is `none`, `update-existing`, `create-new`, or `architecture-decision-required`.
 

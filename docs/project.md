@@ -9,7 +9,7 @@ Help developers organize bounded work through repository-native specifications, 
 
 ## Current Scope
 
-Eight [agent skills](../.agents/skills/sdd-init/SKILL.md) and three roles define the workflow. Reusable templates, references, and defaults live in `.sdd/`. Project docs and ticket examples demonstrate their application. The project has no executable application.
+Seven [agent skills](../.agents/skills/project-init/SKILL.md) and three roles define the workflow. Reusable templates, references, and defaults live in `.sdd/`. Project docs and ticket examples demonstrate their application. The project has no executable application.
 
 ## User Roles
 

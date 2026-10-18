@@ -1,8 +1,8 @@
 ---
-name: sdd-init
+name: project-init
 description: Initialize or adopt SDD project documentation without creating sprints or tickets.
 ---
-# sdd-init
+# project-init
 
 Follow the [applicable role](../../roles/planner.md).
 

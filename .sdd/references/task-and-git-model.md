@@ -6,6 +6,8 @@ Task IDs are unique within a ticket. Before planning or selecting work, verify e
 
 Ticket dependencies must be accepted or done before implementation unless a reviewed plan records the partial-deliverable dependency and evidence. Task predecessors must reach `task_ready_after`: `implemented` permits implemented/in_review/accepted predecessors, while `accepted` requires accepted. A blocked, cancelled, or pending predecessor is never satisfied. Recheck predecessor review findings before starting dependent work; blocking findings invalidate readiness. Mark only ready work as ready. Unrelated tasks can proceed independently, but do not delegate without applicable user authorization.
 
+After requested changes, human-led planning selects and readies correction tasks in a new approved iteration. A finding on the task being corrected does not prohibit that planned correction; a blocking finding on its predecessor still invalidates readiness unless the plan corrects the predecessor first. Preserve prior iteration changeset boundaries and review results before recording the new boundary. Unchanged accepted tasks retain their history, but affected dependent acceptance must be revalidated against the correction.
+
 ## Changeset boundary
 
 One task maps to one logical reviewable changeset, possibly several commits. Record paths, actual base commit, branch/base branch, commit IDs when present, review state, and verification evidence in that task. Documentation belongs in its related changeset. Research with no meaningful diff records its findings as a deliverable and an exception; never create an empty commit or PR solely for bookkeeping.

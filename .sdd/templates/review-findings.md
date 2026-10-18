@@ -49,7 +49,7 @@ history:
 
 ## Required Follow-Up
 
-{{owners, tasks, review reruns, or none}}
+{{for changes_requested: hand off to human-led ticket-plan with the findings before any implementation; for blocked: identify evidence/authority needed; otherwise owners, review reruns, or none}}
 
 ## Resolution History
 

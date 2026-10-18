@@ -11,6 +11,8 @@ Persist enough context for a new session to execute or review one bounded piece 
 
 Specify outcomes, plan ready tasks, identify changesets, preserve evidence, and reconcile changes without resetting completed work.
 
+Approve the specification once, then run human-led plan -> implement -> independent review for each iteration. Plans record human direction, exact changes and evidence-based finding assessments; preserve previous plans and outcomes. Implementation and review consume those decisions with minimal interaction and escalate unforeseen conflicts.
+
 ## Inputs and Outputs
 
 Inputs are user priorities, actual repository state, constitution and decisions. Outputs are sprint manifests, specifications, implementation/review contracts and findings.

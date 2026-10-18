@@ -27,6 +27,8 @@ Every task states its documentation impact. Include required documentation with 
 
 The illustrative project requires human specification/plan approval and independent review. An implementer cannot approve their own task or mark a ticket done. Critical/major findings block acceptance until verified resolved or explicitly dispositioned by a human under a recorded policy. Minor/suggestion concerns require recorded follow-up. Sample approvals are teaching records and grant no actual authority.
 
+Finalize each ticket specification once, then repeat human-led plan -> implement -> independent review. Every requested-change cycle requires a new approved iteration plan assessing finding validity and scope. Humans provide instructions or answer planning questions; implementation and review use the recorded decisions with minimal interaction, escalating unforeseen conflicts. Changed requirements belong in a separately authorized linked ticket. Preserve prior plans, approvals and review history.
+
 ## Definition of Done
 
 Acceptance criteria are verified; required tasks are independently accepted; applicable checks pass; blocking findings are resolved; remaining concerns have owners; docs are current; reviewer/human completion is recorded with evidence. Without real independent review, actual work remains awaiting acceptance regardless of illustrative ticket statuses.

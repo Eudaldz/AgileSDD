@@ -1,8 +1,8 @@
 ---
-name: sdd-sprint
+name: project-sprint
 description: Plan one bounded sprint after reconciliation and create approved ticket stubs.
 ---
-# sdd-sprint
+# project-sprint
 
 Follow the [applicable role](../../roles/planner.md).
 

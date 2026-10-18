@@ -14,6 +14,8 @@ Frontmatter identifies the exact specification and plan this contract verifies.
 
 {{tasks, behavior, reviewer independence, and context for a fresh session}}
 
+{{current iteration's prior-finding actions and disputed/out-of-scope proposals to independently verify; fixed specification remains the acceptance contract}}
+
 ## Specification Reference
 
 {{links to specification, plan, constitution, relevant architecture, and ADRs}}

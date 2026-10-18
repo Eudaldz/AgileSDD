@@ -23,6 +23,20 @@ Frontmatter owns plan metadata; the specification owns ticket status.
 
 {{actual source, constitution, architecture, ADRs, and implemented/absent behavior}}
 
+## Human Direction
+
+{{this iteration's human priorities, constraints and tradeoff decisions; instructions or questions/answers; unresolved decisions prevent approval}}
+
+## Iteration Scope
+
+{{concrete Markdown description of what will change in this iteration, exclusions and expected outcomes; plan_revision is the iteration number}}
+
+## Finding Assessment
+
+| Finding | Validity and evidence | In scope? Why? | Proposed action and task |
+|---|---|---|---|
+| {{finding ID or no review yet}} | {{valid/disputed/invalid proposal and evidence}} | {{specification/project rule or optional enhancement}} | {{fix, evidence-only recheck, or authorized follow-up; reviewer owns resolution}} |
+
 ## Technical Approach
 
 {{design, affected components, data/interfaces, external dependencies, migration, and material alternatives}}
@@ -87,3 +101,7 @@ Null Git fields mean not yet established; populate the actual boundary before im
 ## Implementation Progress
 
 {{append actual evidence, exact commands/outcomes or manual observations, task status transitions, plan revisions, and limitations; never claim simulated checks were run}}
+
+## Iteration History
+
+{{before replacing an approved iteration, preserve its plan/contract revision, human direction, scope, decisions, approval evidence, task boundaries, review outcomes and next-iteration reason; retain completed work without duplicating editable task mappings}}

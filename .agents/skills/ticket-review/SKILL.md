@@ -12,6 +12,8 @@ Repository paths in code are root-relative. Read [artifact contracts](../../../.
 
 Use for review/re-review of a ticket or named task. Inputs: ticket ID, optional task ID, identifiable changeset boundary.
 
+Use the recorded contract and iteration decisions without routine questions to the human. Investigate uncertainty from the repository and report findings or limitations. Only an unforeseen conflict, missing authority or inaccessible review boundary warrants escalation; product priorities and engineering tradeoffs return to ticket-plan, not an interactive review-design session.
+
 ## Context and Preconditions
 
 Read specification, implementation/review contracts, existing findings and actual diffs/files. Read [review policy](../../../.sdd/references/review-policy.md) and [task/Git model](../../../.sdd/references/task-and-git-model.md). Require aligned revisions and a stable scope. If you implemented the work, prepare handoff and report independence unavailable; do not self-approve or delegate without authorization.
@@ -21,7 +23,7 @@ Read specification, implementation/review contracts, existing findings and actua
 1. Verify actual base/commits/snapshot and paths, including untracked files. Missing evidence, unstable scope or stale revisions block approval; inspect available evidence without claiming completeness.
 2. Independently check each criterion, behavior/regressions, dependencies, architecture/ADRs, security, project checks and documentation. Run inspected applicable checks and state limitations.
 3. Append a run using the [findings template](../../../.sdd/templates/review-findings.md), with reviewer, exact revisions/boundary, scope, checks/outcomes, limitations and verdict. Reuse finding IDs for the same defect and append history.
-4. Record evidence, paths/lines where known, severity, category, task and suggested fix. Requested fixes yield changes_requested; unavailable evidence yields blocked. Verify fixes before resolving findings. Never delete old findings or verdicts.
+4. Record evidence, paths/lines where known, severity, category, task and suggested fix. Tie findings to the specification, project rule or regression; label optional/out-of-scope suggestions rather than treating every preference as a defect. Requested fixes yield changes_requested, mark plan_status needs_reconciliation, and hand off to human-led ticket-plan for the next iteration; unavailable evidence yields blocked. On re-review inspect the changed boundary and independently assess planned fixes and disputed-finding evidence before resolving findings. Never delete old findings or verdicts or silently lower the acceptance bar.
 5. Accept tasks only when their gates pass. Full-ticket acceptance additionally requires all required tasks accepted, criteria verified, dependencies satisfied, docs current and blockers resolved or dispositioned by an authorized human under policy.
 6. Record accepted only with evidence/authority; done additionally requires the completion gate and reviewer/human action. Do not edit implementation during normal review, merge, push or publish.
 

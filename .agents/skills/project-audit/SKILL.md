@@ -1,8 +1,8 @@
 ---
-name: sdd-audit
+name: project-audit
 description: Inspect SDD artifact consistency and documentation drift with evidence and scoped corrective proposals.
 ---
-# sdd-audit
+# project-audit
 
 Follow the [applicable role](../../roles/planner.md).
 

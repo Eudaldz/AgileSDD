@@ -14,11 +14,11 @@ Illustrative Review Session B, independent of Implementer B: TASK-001, spec/plan
 
 ### R-002
 
-Same illustrative reviewer: TASK-002, spec/plan revision 1, EX-T002-2 (guide/index). AC-003 handoff is present; AC-002 lacks the preservation rule. Open F-001, verdict changes_requested; TASK-002 returns to in_progress.
+Same illustrative reviewer: TASK-002, spec/plan revision 1, EX-T002-2 (guide/index). AC-003 handoff is present; AC-002 lacks the preservation rule. Open F-001, verdict changes_requested; TASK-002 remains unaccepted and the plan becomes needs_reconciliation. Human-led planning follows before any fix: D-003 approves plan/contract revision 2, keeps the specification fixed, selects the AC-002 correction and excludes unrelated T-003 research.
 
 ### R-003
 
-Same illustrative independent reviewer: TASK-002 re-review and full ticket, spec/plan revision 1, EX-T002-3 plus unchanged EX-T002-1. Corrected preservation paragraph satisfies AC-002; all mappings, docs and T-001 dependency checked. Resolve F-001, accept TASK-002, full verdict approved. All runs are teaching history, not actually executed checks or real snapshots.
+Same illustrative independent reviewer: TASK-002 re-review and full ticket, specification revision 1 and plan/contract revision 2, EX-T002-3 plus unchanged EX-T002-1. Corrected preservation paragraph satisfies AC-002; all mappings, docs and T-001 dependency checked. Resolve F-001, accept TASK-002, full verdict approved. All runs are teaching history, not actually executed checks or real snapshots.
 
 ## Review Verdict
 
@@ -40,7 +40,7 @@ suggested_resolution: "State that existing documentation, source, application te
 status: "resolved"
 introduced_in: "R-002"
 resolution: "Illustrative R-003 checks the corrected preservation paragraph at EX-T002-3 and confirms AC-002. This is not actual execution evidence."
-history: [{"run": "R-002", "actor": "Illustrative Review Session B", "action": "opened", "evidence": "EX-T002-2 omitted explicit preservation rule."}, {"run": "R-002", "actor": "Illustrative Implementer B", "action": "acknowledged", "evidence": "Reopen TASK-002 and propose explicit preservation language."}, {"run": "R-003", "actor": "Illustrative Implementer B", "action": "proposed-resolution", "evidence": "EX-T002-3 adds preservation rule; request independent re-review."}, {"run": "R-003", "actor": "Illustrative Review Session B", "action": "resolved", "evidence": "Independently inspect corrected paragraph and full AC mapping in teaching sequence."}]
+history: [{"run": "R-002", "actor": "Illustrative Review Session B", "action": "opened", "evidence": "EX-T002-2 omitted explicit preservation rule."}, {"run": "R-002", "actor": "Illustrative Implementer B", "action": "acknowledged", "evidence": "After human-led assessment, illustrative D-003 approves iteration 2 to reopen TASK-002 for explicit preservation language; specification revision 1 stays fixed."}, {"run": "R-003", "actor": "Illustrative Implementer B", "action": "proposed-resolution", "evidence": "EX-T002-3 adds preservation rule; request independent re-review."}, {"run": "R-003", "actor": "Illustrative Review Session B", "action": "resolved", "evidence": "Independently inspect corrected paragraph and full AC mapping in teaching sequence."}]
 ```
 
 ## Blocking Concerns
@@ -61,4 +61,4 @@ In actual work obtain a fresh reviewer and real immutable review boundary before
 
 ## Resolution History
 
-Reconciliation mapped F-001 to existing TASK-002 without changing requirements. Implementer acknowledged, corrected and proposed resolution; reviewer verified before resolving. Prior runs and history remain. Reviewer then recorded accepted -> done after documentation synchronization.
+Human-led planning assessed F-001 as valid and in scope under AC-002, mapped it to existing TASK-002, and approved iteration 2 as D-003 without changing requirements. Implementation then corrected it and proposed resolution; independent R-003 verified plan/contract revision 2 before resolving. Prior runs and history remain. Reviewer then recorded accepted -> done after documentation synchronization.
