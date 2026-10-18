@@ -1,0 +1,11 @@
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*~
+
+# Local credentials must not become project artifacts
+.env
+.env.local
+.env.*.local

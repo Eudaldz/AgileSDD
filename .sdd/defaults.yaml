@@ -1,0 +1,15 @@
+# Read by agents; no configuration loader or runtime is required.
+sdd:
+  story_points: [1, 2, 3, 5, 8, 13]
+  default_sprint_length_days: 14
+  require_spec_approval: true
+  require_plan_approval: true
+  require_independent_review: true
+  require_docs_validation: true
+  git:
+    mode: local
+    stacked_changesets: true
+  validation:
+    fail_on_broken_links: true
+    require_acceptance_traceability: true
+  task_ready_after: implemented
